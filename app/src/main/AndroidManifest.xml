@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Restaurant_order_app">
         <activity
+            android:name=".checkoutActivity"
+            android:exported="false" />
+        <activity
             android:name=".menuActivity"
             android:exported="false" />
         <activity

@@ -65,28 +65,33 @@
 
     <Button
         android:id="@+id/mapsButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:layout_marginStart="108dp"
         android:layout_marginTop="32dp"
-        android:text="Find us on Google Maps"
+        app:icon="@android:drawable/ic_dialog_map"
+        app:iconPadding="10dp"
+        app:iconSize="60dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/mainText"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="1.0" />
 
     <Button
         android:id="@+id/shareButton"
-        android:layout_width="62dp"
-        android:layout_height="53dp"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
         android:layout_marginStart="68dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="32dp"
         app:icon="@android:drawable/ic_menu_share"
+        app:iconSize="60dp"
+        app:iconTint="#F6F2F2"
+        app:iconTintMode="multiply"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.103"
         app:layout_constraintStart_toEndOf="@+id/mapsButton"
         app:layout_constraintTop_toBottomOf="@+id/mainText"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="1.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>
