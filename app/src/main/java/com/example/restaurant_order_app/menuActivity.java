@@ -15,6 +15,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class menuActivity extends AppCompatActivity {
 
+    // Declaring global values
     public static final String SHARED_PREFS = "sharedPrefs";
     public static final String BBQ = "bbq";
     public static final String BUFFALO = "buffalo";

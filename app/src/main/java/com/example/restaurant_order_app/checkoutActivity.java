@@ -16,6 +16,7 @@ import java.text.DecimalFormat;
 
 public class checkoutActivity extends AppCompatActivity {
 
+    // Declaring global values
     public static final String SHARED_PREFS = "sharedPrefs";
     public static final String BBQ = "bbq";
     public static final String BUFFALO = "buffalo";
@@ -79,9 +80,8 @@ public class checkoutActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 if(tip15Check.isChecked()){
-                    tip20Check.setEnabled(false);
-                }else{
-                    tip20Check.setEnabled(true);
+                    tip20Check.setChecked(false);
+                    tipEdit.setText("");
                 }
 
                 finalSummaryView.setText(doTip(tip15Check, tip20Check, tipEdit));
@@ -95,9 +95,8 @@ public class checkoutActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 if(tip20Check.isChecked()){
-                    tip15Check.setEnabled(false);
-                }else{
-                    tip15Check.setEnabled(true);
+                    tip15Check.setChecked(false);
+                    tipEdit.setText("");
                 }
 
                 finalSummaryView.setText(doTip(tip15Check, tip20Check, tipEdit));
@@ -111,11 +110,8 @@ public class checkoutActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 if(tipEdit.getText().length() != 0){
-                    tip15Check.setEnabled(false);
-                    tip20Check.setEnabled(false);
-                }else{
-                    tip15Check.setEnabled(true);
-                    tip20Check.setEnabled(true);
+                    tip15Check.setChecked(false);
+                    tip20Check.setChecked(false);
                 }
 
                 finalSummaryView.setText(doTip(tip15Check, tip20Check, tipEdit));
