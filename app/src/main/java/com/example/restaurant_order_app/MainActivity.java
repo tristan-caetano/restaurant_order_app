@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
         Button map = (Button) findViewById(R.id.mapsButton);
 
         // Setting the main text to display a phone number and address
-        main.setText("Contact us at: 1-800-995-2345\n285 Old Westport Rd, North Dartmouth, MA 02747");
+        main.setText("Contact us at: 999-999-9999\n285 Old Westport Rd, North Dartmouth, MA 02747");
 
         // Button that bring you to the menu
         order.setOnClickListener(new View.OnClickListener() {
