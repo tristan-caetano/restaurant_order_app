@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
         order.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent menuIntent = new Intent(getApplicationContext(), menuActivity.class);
+                Intent menuIntent = new Intent(getApplicationContext(), Cards.class);
                 startActivity(menuIntent);
             }
         });

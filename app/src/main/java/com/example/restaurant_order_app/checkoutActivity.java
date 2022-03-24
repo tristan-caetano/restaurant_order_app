@@ -1,6 +1,8 @@
 package com.example.restaurant_order_app;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -12,28 +14,21 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.restaurant_order_app.WordListAdapter;
+
 import java.text.DecimalFormat;
+import java.util.LinkedList;
 
 public class checkoutActivity extends AppCompatActivity {
 
     // Declaring global values
     public static final String SHARED_PREFS = "sharedPrefs";
-    public static final String BBQ = "bbq";
-    public static final String BUFFALO = "buffalo";
-    public static final String PLAIN = "plain";
-    public int buffalo, bbq, plain;
     public double total;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_checkout);
-
-        // Creating shared prefs
-        SharedPreferences sharedPrefs = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
-        bbq = sharedPrefs.getInt(BBQ, 0);
-        buffalo = sharedPrefs.getInt(BUFFALO, 0);
-        plain = sharedPrefs.getInt(PLAIN, 0);
 
         // Declaring buttons
         Button orderEditButton = (Button) findViewById(R.id.orderEditButton);
@@ -44,15 +39,15 @@ public class checkoutActivity extends AppCompatActivity {
         CheckBox tip20Check = (CheckBox) findViewById(R.id.tip20Check);
 
         // Declaring text views for summary
-        TextView netSummaryView = (TextView) findViewById(R.id.netSummaryView);
+        RecyclerView mRecyclerView = findViewById(R.id.netRecyclerView);
         TextView finalSummaryView = (TextView) findViewById(R.id.finalSummaryView);
 
         // Declaring edit text field for tip
         EditText tipEdit = (EditText) findViewById(R.id.tipEdit);
 
-        String netSummary = fillNetView();
-
-        netSummaryView.setText(netSummary);
+        WordListAdapter recycAdap = new WordListAdapter(this, fillNetView());
+        mRecyclerView.setAdapter(recycAdap);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         finalSummaryView.setText(doTip(tip15Check, tip20Check, tipEdit));
 
@@ -120,32 +115,28 @@ public class checkoutActivity extends AppCompatActivity {
     }
 
     // Calculating menu prices for net view
-    public String fillNetView(){
+    public LinkedList<String> fillNetView(){
 
-        // Declaring values
-        String returnView = "";
-        total = ((9.99 * plain) + (12.99 * buffalo) + (15.99 * bbq));
+        // Creating shared prefs
+        SharedPreferences sharedPrefs = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
 
-        // Only displaying bbq wings
-        if(bbq > 0){
-            returnView += ("BBQ Wings x " + bbq + "                          $" + (15.99 * bbq) + "\n\n");
+        LinkedList<String> netCostList = new LinkedList<>();
+        int tempAmt = 0;
+        int tempSubAmt = 0;
+
+        String[] foodList = getResources()
+                .getStringArray(R.array.food_titles);
+
+        String[] foodCost = getResources()
+                .getStringArray(R.array.food_cost);
+
+        for(int i=0;i<foodList.length;i++){
+            tempAmt = sharedPrefs.getInt(foodList[i], 0);
+            tempSubAmt = tempAmt * Integer.parseInt(foodCost[i]);
+            netCostList.addLast(foodList[i] + " x" + tempAmt + "   ---------------------   " + tempSubAmt);
         }
 
-        // Only displaying buffalo wings
-        if(buffalo > 0){
-            returnView += ("Buffalo Wings x " + buffalo + "                     $" + (12.99 * buffalo) + "\n\n");
-        }
-
-        // Only displaying plain wings
-        if(plain > 0){
-            returnView += ("Plain Wings x " + plain + "                         $" + (9.99 * plain) + "\n\n");
-        }
-
-        // Pre tip total
-        returnView += "_______________________________________\n";
-        returnView += "Pre Tip Total:                             $" + ((9.99 * plain) + (12.99 * buffalo) + (15.99 * bbq));
-
-        return returnView;
+        return netCostList;
     }
 
     // Calculating tip for final view

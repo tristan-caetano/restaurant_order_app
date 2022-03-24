@@ -1,3 +1,22 @@
 <resources>
     <string name="app_name">restaurant_order_app</string>
+
+    <string-array name="food_titles">
+        <item>BBQ Wings - $15.99</item>
+        <item>Buffalo Wings - $12.99</item>
+        <item>Plain Wings - $9.99</item>
+    </string-array>
+
+    <string-array name="food_cost">
+        <item>15.99</item>
+        <item>12.99</item>
+        <item>9.99</item>
+    </string-array>
+
+    <array name="food_images">
+        <item>@drawable/bbq</item>
+        <item>@drawable/buffalo</item>
+        <item>@drawable/plain</item>
+    </array>
+
 </resources>

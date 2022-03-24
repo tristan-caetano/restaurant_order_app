@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="140dp"
+        android:layout_height="119dp"
+        app:srcCompat="@drawable/buffalo"
+        tools:layout_editor_absoluteX="48dp"
+        tools:layout_editor_absoluteY="53dp" />
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="140dp"
+        android:layout_height="119dp"
+        app:srcCompat="@drawable/plain"
+        tools:layout_editor_absoluteX="48dp"
+        tools:layout_editor_absoluteY="378dp" />
+
+    <Button
+        android:id="@+id/plainPlus2"
+        android:layout_width="30dp"
+        android:layout_height="40dp"
+        android:backgroundTint="#216305"
+        android:gravity="center|fill_vertical"
+        android:textSize="14sp"
+        app:icon="@drawable/add"
+        app:iconGravity="textStart"
+        app:iconPadding="0dp"
+        app:iconSize="30sp"
+        tools:layout_editor_absoluteX="218dp"
+        tools:layout_editor_absoluteY="427dp" />
+
+    <EditText
+        android:id="@+id/plainEdit2"
+        android:layout_width="60dp"
+        android:layout_height="40dp"
+        android:ems="10"
+        android:inputType="number"
+        tools:layout_editor_absoluteX="258dp"
+        tools:layout_editor_absoluteY="427dp" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="140dp"
+        android:layout_height="22dp"
+        android:text="Plain Wings ($9.99)"
+        tools:layout_editor_absoluteX="48dp"
+        tools:layout_editor_absoluteY="497dp" />
+
+    <Button
+        android:id="@+id/buffMinus2"
+        android:layout_width="30dp"
+        android:layout_height="40dp"
+        android:backgroundTint="#A50505"
+        android:gravity="bottom|center"
+        android:lineSpacingExtra="0sp"
+        android:text=""
+        android:textAlignment="center"
+        android:textSize="1sp"
+        app:icon="@drawable/subtract"
+        app:iconGravity="textTop"
+        app:iconPadding="0dp"
+        app:iconSize="30sp"
+        app:iconTint="#FFFFFF"
+        tools:layout_editor_absoluteX="342dp"
+        tools:layout_editor_absoluteY="98dp"
+        tools:text="-" />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="140dp"
+        android:layout_height="22dp"
+        android:text="BBQ Wings ($15.99)"
+        tools:layout_editor_absoluteX="48dp"
+        tools:layout_editor_absoluteY="340dp" />
+
+    <EditText
+        android:id="@+id/bbqEdit2"
+        android:layout_width="60dp"
+        android:layout_height="40dp"
+        android:ems="10"
+        android:inputType="number"
+        tools:layout_editor_absoluteX="248dp"
+        tools:layout_editor_absoluteY="268dp" />
+
+    <EditText
+        android:id="@+id/buffEdit2"
+        android:layout_width="60dp"
+        android:layout_height="40dp"
+        android:ems="10"
+        android:inputType="number"
+        tools:layout_editor_absoluteX="258dp"
+        tools:layout_editor_absoluteY="98dp" />
+
+    <Button
+        android:id="@+id/bbqPlus2"
+        android:layout_width="30dp"
+        android:layout_height="40dp"
+        android:backgroundTint="#216305"
+        android:gravity="center|fill_vertical"
+        android:textSize="14sp"
+        app:icon="@drawable/add"
+        app:iconGravity="textStart"
+        app:iconPadding="0dp"
+        app:iconSize="30sp"
+        tools:layout_editor_absoluteX="207dp"
+        tools:layout_editor_absoluteY="268dp" />
+
+    <Button
+        android:id="@+id/bbqMinus2"
+        android:layout_width="30dp"
+        android:layout_height="40dp"
+        android:backgroundTint="#A50505"
+        android:gravity="bottom|center"
+        android:lineSpacingExtra="0sp"
+        android:text=""
+        android:textAlignment="center"
+        android:textSize="1sp"
+        app:icon="@drawable/subtract"
+        app:iconGravity="textTop"
+        app:iconPadding="0dp"
+        app:iconSize="30sp"
+        app:iconTint="#FFFFFF"
+        tools:layout_editor_absoluteX="342dp"
+        tools:layout_editor_absoluteY="268dp"
+        tools:text="-" />
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="159dp"
+        android:layout_height="24dp"
+        android:text="Buffalo Wings ($12.99)"
+        tools:layout_editor_absoluteX="48dp"
+        tools:layout_editor_absoluteY="173dp" />
+
+    <ImageView
+        android:id="@+id/imageView7"
+        android:layout_width="140dp"
+        android:layout_height="119dp"
+        app:srcCompat="@drawable/bbq"
+        tools:layout_editor_absoluteX="48dp"
+        tools:layout_editor_absoluteY="221dp" />
+
+    <Button
+        android:id="@+id/buffPlus2"
+        android:layout_width="30dp"
+        android:layout_height="40dp"
+        android:backgroundTint="#216305"
+        android:gravity="center|fill_vertical"
+        android:textSize="14sp"
+        app:icon="@drawable/add"
+        app:iconGravity="textStart"
+        app:iconPadding="0dp"
+        app:iconSize="30sp"
+        tools:layout_editor_absoluteX="218dp"
+        tools:layout_editor_absoluteY="98dp" />
+
+    <Button
+        android:id="@+id/plainMinus2"
+        android:layout_width="30dp"
+        android:layout_height="40dp"
+        android:backgroundTint="#A50505"
+        android:gravity="bottom|center"
+        android:lineSpacingExtra="0sp"
+        android:text=""
+        android:textAlignment="center"
+        android:textSize="1sp"
+        app:icon="@drawable/subtract"
+        app:iconGravity="textTop"
+        app:iconPadding="0dp"
+        app:iconSize="30sp"
+        app:iconTint="#FFFFFF"
+        tools:layout_editor_absoluteX="329dp"
+        tools:layout_editor_absoluteY="427dp"
+        tools:text="-" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
