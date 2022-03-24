@@ -25,11 +25,11 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> {
     /**
      * Constructor that passes in the sports data and the context.
      *
-     * @param sportsData ArrayList containing the sports data.
+     * @param foodData ArrayList containing the sports data.
      * @param context Context of the application.
      */
-    FoodAdapter(Context context, ArrayList<Food> sportsData) {
-        this.foodData = sportsData;
+    FoodAdapter(Context context, ArrayList<Food> foodData) {
+        this.foodData = foodData;
         this.mContext = context;
     }
 

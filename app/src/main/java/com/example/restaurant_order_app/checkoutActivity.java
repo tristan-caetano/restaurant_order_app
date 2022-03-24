@@ -64,8 +64,8 @@ public class checkoutActivity extends AppCompatActivity {
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast toast = Toast.makeText(getApplicationContext(), "Your order has been submitted!", Toast.LENGTH_SHORT);
-                toast.show();
+                Intent menuIntent = new Intent(getApplicationContext(), payActivity.class);
+                startActivity(menuIntent);
             }
         });
 
@@ -122,7 +122,7 @@ public class checkoutActivity extends AppCompatActivity {
 
         LinkedList<String> netCostList = new LinkedList<>();
         int tempAmt = 0;
-        int tempSubAmt = 0;
+        float tempSubAmt = 0;
 
         String[] foodList = getResources()
                 .getStringArray(R.array.food_titles);
@@ -132,8 +132,9 @@ public class checkoutActivity extends AppCompatActivity {
 
         for(int i=0;i<foodList.length;i++){
             tempAmt = sharedPrefs.getInt(foodList[i], 0);
-            tempSubAmt = tempAmt * Integer.parseInt(foodCost[i]);
-            netCostList.addLast(foodList[i] + " x" + tempAmt + "   ---------------------   " + tempSubAmt);
+            tempSubAmt = tempAmt * Float.parseFloat(foodCost[i]);
+            total += tempSubAmt;
+            netCostList.addLast(foodList[i] + " x " + tempAmt + "     $" + tempSubAmt);
         }
 
         return netCostList;

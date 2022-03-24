@@ -19,6 +19,9 @@
             android:name=".Cards"
             android:exported="false" />
         <activity
+            android:name=".menuActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

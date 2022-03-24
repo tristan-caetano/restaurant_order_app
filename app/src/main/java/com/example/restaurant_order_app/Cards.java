@@ -47,7 +47,7 @@ public class Cards extends AppCompatActivity {
     /**
      * Initialize the sports data from resources.
      */
-    private void initializeData() {
+    public ArrayList<Food> initializeData() {
         // Get the resources from the XML file.
         String[] foodList = getResources()
                 .getStringArray(R.array.food_titles);
@@ -68,6 +68,8 @@ public class Cards extends AppCompatActivity {
 
         // Notify the adapter of the change.
         mAdapter.notifyDataSetChanged();
+
+        return(foodData);
     }
 
 }

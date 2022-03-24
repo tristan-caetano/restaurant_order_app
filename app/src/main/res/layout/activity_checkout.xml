@@ -10,8 +10,9 @@
         android:id="@+id/netRecyclerView"
         android:layout_width="370dp"
         android:layout_height="181dp"
-        android:layout_marginTop="4dp"
+        app:layout_constraintBottom_toTopOf="@+id/tip15Check"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
@@ -19,12 +20,13 @@
         android:id="@+id/textView9"
         android:layout_width="361dp"
         android:layout_height="93dp"
-        android:layout_marginTop="16dp"
         android:gravity="center|left"
         android:text="Your Summary"
         android:textColor="#000000"
         android:textSize="34sp"
+        app:layout_constraintBottom_toTopOf="@+id/netRecyclerView"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -32,11 +34,10 @@
         android:id="@+id/tip15Check"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
         android:text="15% Tip"
         app:layout_constraintBottom_toTopOf="@+id/tip20Check"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/netRecyclerView" />
 
@@ -45,17 +46,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="20% Tip"
-        tools:layout_editor_absoluteX="165dp"
-        tools:layout_editor_absoluteY="373dp" />
+        app:layout_constraintBottom_toTopOf="@+id/tipEdit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tip15Check" />
 
     <EditText
         android:id="@+id/tipEdit"
         android:layout_width="357dp"
         android:layout_height="53dp"
-        android:layout_marginTop="32dp"
         android:ems="10"
         android:inputType="number"
+        app:layout_constraintBottom_toTopOf="@+id/finalSummaryView"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tip20Check" />
 
@@ -63,10 +68,10 @@
         android:id="@+id/finalSummaryView"
         android:layout_width="354dp"
         android:layout_height="89dp"
-        android:layout_marginTop="12dp"
         android:text="TextView"
+        app:layout_constraintBottom_toTopOf="@+id/orderEditButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.421"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tipEdit" />
 
@@ -74,24 +79,22 @@
         android:id="@+id/orderEditButton"
         android:layout_width="156dp"
         android:layout_height="49dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="24dp"
         android:text="Edit Order"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/submitButton"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/finalSummaryView"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/finalSummaryView" />
 
     <Button
         android:id="@+id/submitButton"
         android:layout_width="156dp"
         android:layout_height="49dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="28dp"
         android:text="Submit Order"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/finalSummaryView"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/orderEditButton"
+        app:layout_constraintTop_toBottomOf="@+id/finalSummaryView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
