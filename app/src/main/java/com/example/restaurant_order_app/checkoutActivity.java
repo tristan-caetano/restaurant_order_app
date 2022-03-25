@@ -1,12 +1,15 @@
 package com.example.restaurant_order_app;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -14,10 +17,13 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.restaurant_order_app.WordListAdapter;
-
 import java.text.DecimalFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.LinkedList;
+import java.util.TimeZone;
 
 public class checkoutActivity extends AppCompatActivity {
 
@@ -25,47 +31,52 @@ public class checkoutActivity extends AppCompatActivity {
     public static final String SHARED_PREFS = "sharedPrefs";
     public double total;
 
+    // Global values for date comparison
+    private Date date;
+    private Date dCompOne;
+    private Date dCompTwo;
+    private String sCompOne = "10:00";
+    private String sCompTwo = "22:00";
+    SimpleDateFormat inParser = new SimpleDateFormat("HH:mm");
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_checkout);
 
-        // Declaring buttons
-        Button orderEditButton = (Button) findViewById(R.id.orderEditButton);
-        Button submitButton = (Button) findViewById(R.id.submitButton);
-
         // Declaring check boxes
         CheckBox tip15Check = (CheckBox) findViewById(R.id.tip15Check);
         CheckBox tip20Check = (CheckBox) findViewById(R.id.tip20Check);
 
-        // Declaring text views for summary
+        // Declaring button
+        Button checkoutButton = findViewById(R.id.checkoutButton);
+
+        // Declaring recycler
         RecyclerView mRecyclerView = findViewById(R.id.netRecyclerView);
+
+        // Declaring text views for summary
         TextView finalSummaryView = (TextView) findViewById(R.id.finalSummaryView);
+
+        // Declaring and setting toolbar
+        Toolbar tempToolBar = findViewById(R.id.prevCToolbar);
+        setSupportActionBar(tempToolBar);
 
         // Declaring edit text field for tip
         EditText tipEdit = (EditText) findViewById(R.id.tipEdit);
 
+        // Declaring adapter for recyclerview
         WordListAdapter recycAdap = new WordListAdapter(this, fillNetView());
         mRecyclerView.setAdapter(recycAdap);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
+        // Setting the summary view
         finalSummaryView.setText(doTip(tip15Check, tip20Check, tipEdit));
 
-        // Button that brings you back to the menu
-        orderEditButton.setOnClickListener(new View.OnClickListener() {
+        // Button that bring you to the pay screen
+        checkoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent menuIntent = new Intent(getApplicationContext(), menuActivity.class);
-                startActivity(menuIntent);
-            }
-        });
-
-        // Button that brings you back to the menu
-        submitButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent menuIntent = new Intent(getApplicationContext(), payActivity.class);
-                startActivity(menuIntent);
+                isOpen();
             }
         });
 
@@ -114,13 +125,43 @@ public class checkoutActivity extends AppCompatActivity {
         });
     }
 
+    // Inflating toolbar to get toolbar buttons
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.toolbar_buttons, menu);
+        return true;
+    }
+
+    // Method for defining what the toolbar buttons do
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch(item.getItemId()){
+
+            case R.id.homeButton:
+                startActivity(new Intent(this, MainActivity.class));
+                return true;
+
+            case R.id.menuButton:
+                startActivity(new Intent(this, menuActivity.class));
+                return true;
+
+            case R.id.cartButton:
+                return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
     // Calculating menu prices for net view
     public LinkedList<String> fillNetView(){
 
         // Creating shared prefs
         SharedPreferences sharedPrefs = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
 
+        // Declaring list to contain food titles and cost
         LinkedList<String> netCostList = new LinkedList<>();
+
+        // Filling recycler view with menu data
         int tempAmt = 0;
         float tempSubAmt = 0;
 
@@ -183,5 +224,32 @@ public class checkoutActivity extends AppCompatActivity {
         finalSummary += ("Final Total:                             $" + (cTipS));
 
         return finalSummary;
+    }
+
+    public void isOpen(){
+
+        // Declaring variables
+        Calendar now = Calendar.getInstance(TimeZone.getTimeZone("GMT-4:00"));
+        int hour = now.get(Calendar.HOUR_OF_DAY);
+        int minute = now.get(Calendar.MINUTE);
+        Toast dateToast = null;
+
+        // Try catch in case the time couldnt be parsed
+        try {
+            date = inParser.parse(hour + ":" + minute);
+            dCompOne = inParser.parse(sCompOne);
+            dCompTwo = inParser.parse(sCompTwo);
+        } catch (ParseException e) {
+            System.err.println("Dates could not be parsed.");
+        }
+
+        // Showing toasts relative to current time
+        if(dCompOne.before(date) && dCompTwo.after(date)){
+            Intent menuIntent = new Intent(getApplicationContext(), payActivity.class);
+            startActivity(menuIntent);
+        }else{
+            dateToast = Toast.makeText(getApplicationContext(), "Error: We are currently closed. We open at 10 AM.", Toast.LENGTH_SHORT);
+            dateToast.show();
+        }
     }
 }

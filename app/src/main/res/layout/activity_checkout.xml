@@ -19,16 +19,16 @@
     <TextView
         android:id="@+id/textView9"
         android:layout_width="361dp"
-        android:layout_height="93dp"
+        android:layout_height="62dp"
         android:gravity="center|left"
         android:text="Your Summary"
-        android:textColor="#000000"
+        android:textColor="#8F8686"
         android:textSize="34sp"
         app:layout_constraintBottom_toTopOf="@+id/netRecyclerView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/prevCToolbar" />
 
     <CheckBox
         android:id="@+id/tip15Check"
@@ -69,32 +69,32 @@
         android:layout_width="354dp"
         android:layout_height="89dp"
         android:text="TextView"
-        app:layout_constraintBottom_toTopOf="@+id/orderEditButton"
+        app:layout_constraintBottom_toTopOf="@+id/checkoutButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tipEdit" />
 
-    <Button
-        android:id="@+id/orderEditButton"
-        android:layout_width="156dp"
-        android:layout_height="49dp"
-        android:text="Edit Order"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/submitButton"
-        app:layout_constraintHorizontal_bias="0.5"
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/prevCToolbar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/finalSummaryView" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/submitButton"
-        android:layout_width="156dp"
-        android:layout_height="49dp"
-        android:text="Submit Order"
+        android:id="@+id/checkoutButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Checkout"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/orderEditButton"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/finalSummaryView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

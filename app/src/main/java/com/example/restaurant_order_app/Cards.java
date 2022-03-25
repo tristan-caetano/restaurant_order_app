@@ -14,63 +14,58 @@ import java.util.LinkedList;
 
 public class Cards extends AppCompatActivity {
 
-    // Member variables.
+    // Global variables
     private RecyclerView mRecyclerView;
     private ArrayList<Food> foodData;
     private FoodAdapter mAdapter;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
 
-        // Initialize the RecyclerView.
+        // Initializing the recyclerview
         mRecyclerView = findViewById(R.id.menuRecycler);
 
-        // Set the Layout Manager.
+        // Setting the layout manager
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        // Initialize the ArrayList that will contain the data.
+        // Initialize the list that contains the data from xml
         foodData = new ArrayList<>();
 
-        // Initialize the adapter and set it to the RecyclerView.
+        // Initializing the adapter
         mAdapter = new FoodAdapter(this, foodData);
+
+        // Setting the adapter to the recyclerview
         mRecyclerView.setAdapter(mAdapter);
 
-        // Get the data.
+        // Getting the data
         initializeData();
-
-
     }
 
-    /**
-     * Initialize the sports data from resources.
-     */
+    // Method that gets the xml data, returns the list, and notifies the adapter
     public ArrayList<Food> initializeData() {
-        // Get the resources from the XML file.
+
+        // Getting the food names and images from the XML
         String[] foodList = getResources()
                 .getStringArray(R.array.food_titles);
         TypedArray foodImageResources =
                 getResources().obtainTypedArray(R.array.food_images);
 
-        // Clear the existing data (to avoid duplication).
+        // Cleaning the array to prevent multiple array items
         foodData.clear();
 
-        // Create the ArrayList of Sports objects with titles and
-        // information about each sport.
+        // For loop that saves each item from the xml to the list
         for(int i=0;i<foodList.length;i++){
             foodData.add(new Food(foodList[i],foodImageResources.getResourceId(i,0), this));
-            System.out.println("THIS: " + this);
         }
 
         foodImageResources.recycle();
 
-        // Notify the adapter of the change.
+        // Notifying the adapter
         mAdapter.notifyDataSetChanged();
 
         return(foodData);
     }
-
 }
 

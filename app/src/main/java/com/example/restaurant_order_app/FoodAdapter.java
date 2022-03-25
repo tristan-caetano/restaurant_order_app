@@ -9,78 +9,50 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.bumptech.glide.Glide;
-
 import java.util.ArrayList;
-
 public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> {
 
-    // Member variables.
+    // Global values
     private ArrayList<Food> foodData;
     private Context mContext;
 
-    /**
-     * Constructor that passes in the sports data and the context.
-     *
-     * @param foodData ArrayList containing the sports data.
-     * @param context Context of the application.
-     */
+    // Food adapter constructor
     FoodAdapter(Context context, ArrayList<Food> foodData) {
         this.foodData = foodData;
         this.mContext = context;
     }
 
-    /**
-     * Required method for creating the viewholder objects.
-     *
-     * @param parent The ViewGroup into which the new View will be added
-     *               after it is bound to an adapter position.
-     * @param viewType The view type of the new View.
-     * @return The newly created ViewHolder.
-     */
+    // Inflating adapter
     @Override
     public FoodAdapter.ViewHolder onCreateViewHolder(
             ViewGroup parent, int viewType) {
-
 
         return new ViewHolder(LayoutInflater.from(mContext).
                 inflate(R.layout.food_card, parent, false));
     }
 
-    /**
-     * Required method that binds the data to the viewholder.
-     *
-     * @param holder The viewholder into which the data should be put.
-     * @param position The adapter position.
-     */
+    // Binder
     @Override
     public void onBindViewHolder(FoodAdapter.ViewHolder holder,
                                  int position) {
-        // Get current sport.
+        // Get current Food
         Food currentFood = foodData.get(position);
 
-        // Populate the textviews with data.
+        // Populating textviews with data
         holder.bindTo(currentFood);
 
     }
 
-    /**
-     * Required method for determining the size of the data set.
-     *
-     * @return Size of the data set.
-     */
+    // Getting item count per menu item
     @Override
     public int getItemCount() {
         return foodData.size();
     }
 
 
-    /**
-     * ViewHolder class that represents each row of data in the RecyclerView.
-     */
+
     class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         // Member Variables for the TextViews
@@ -91,14 +63,9 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> {
         private EditText editNum;
         private Food currentFood;
 
-        /**
-         * Constructor for the ViewHolder, used in onCreateViewHolder().
-         *
-         * @param itemView The rootview of the list_item.xml layout file.
-         */
+
         ViewHolder(View itemView) {
             super(itemView);
-
 
             // Initialize the views.
             mTitleText = itemView.findViewById(R.id.foodText);
@@ -106,9 +73,6 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> {
             plusButton = itemView.findViewById(R.id.plusButton);
             minusButton = itemView.findViewById(R.id.minusButton);
             editNum = itemView.findViewById(R.id.editNum);
-
-
-
 
             // Plus button for quantity
             plusButton.setOnClickListener(new View.OnClickListener() {
@@ -134,27 +98,25 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> {
                         currentFood.setAmount(foodAmt);
                         editNum.setText(Integer.toString(foodAmt), TextView.BufferType.EDITABLE);
                     }
-
                 }
             });
-
         }
 
+        //Blank onclick
         @Override
-        public void onClick(View view) {
-
-
-        }
+        public void onClick(View view) {}
 
         void bindTo(Food currentFoodF){
             // Populate the textviews with data.
             currentFood = currentFoodF;
             currentFood.init();
+
             int amount = currentFood.getAmount();
+
             Glide.with(mContext).load(currentFood.getImageResource()).into(foodImage);
             mTitleText.setText(currentFood.getFoodTitle());
             editNum.setText(Integer.toString(amount), TextView.BufferType.EDITABLE);
-            System.out.println("CONTEXT: " + mContext);
+
 
         }
     }

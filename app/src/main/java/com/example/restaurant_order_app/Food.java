@@ -14,27 +14,19 @@ public class Food extends AppCompatActivity {
     private Context fContext;
     public static final String SHARED_PREFS = "sharedPrefs";
 
-
-    /**
-     * Constructor for the Sport data model.
-     *
-     * @param title The name if the sport.
-     */
+    // Food constructor
     Food(String title, int imageResource, Context context) {
         this.title = title;
         this.imageResource = imageResource;
         fContext = context;
     }
 
-    /**
-     * Gets the title of the sport.
-     *
-     * @return The title of the sport.
-     */
+    // Getter for food title
     String getFoodTitle() {
         return title;
     }
 
+    // Getter and setter for
     int getAmount(){return amount;}
     void setAmount(int nAmt){
         SharedPreferences sharedPrefs = fContext.getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
@@ -42,21 +34,14 @@ public class Food extends AppCompatActivity {
         amount = nAmt;
         e.putInt(title, amount);
         e.commit();
-
     }
 
+    // Initiating the amount of fooditems for the menu
     void init(){
         // Declaring shared prefs
         SharedPreferences sharedPrefs = fContext.getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
         amount = sharedPrefs.getInt(title, 0);
-        System.out.println("INIT CALLED: " + fContext);
     }
-
-    /**
-     * Gets the info about the sport.
-     *
-     * @return The info about the sport.
-     */
 
     public int getImageResource() {
         return imageResource;

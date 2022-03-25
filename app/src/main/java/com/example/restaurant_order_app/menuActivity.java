@@ -1,18 +1,16 @@
 package com.example.restaurant_order_app;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.res.TypedArray;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import java.util.ArrayList;
 
@@ -26,25 +24,41 @@ public class menuActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
 
-        Button checkout = findViewById(R.id.checkout);
+        // Declaring recyclerview and toolbar
         RecyclerView menuRecycle = findViewById(R.id.menuRecycler);
-        Cards cards = new Cards();
-
+        Toolbar tempToolBar = findViewById(R.id.prevMToolbar);
+        setSupportActionBar(tempToolBar);
         FoodAdapter recycAdap = new FoodAdapter(this, initializeData());
         menuRecycle.setAdapter(recycAdap);
         menuRecycle.setLayoutManager(new LinearLayoutManager(this));
 
-        // Goes to checkout screen with values
-        checkout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                System.out.println("GO TO CHECKOUT");
-                Intent menuIntent = new Intent(getApplicationContext(), checkoutActivity.class);
-                startActivity(menuIntent);
-            }
-        });
+    }
 
+    // Inflating toolbar to get toolbar buttons
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.toolbar_buttons, menu);
+        return true;
+    }
 
+    // Method for defining what the toolbar buttons do
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch(item.getItemId()){
+
+            case R.id.homeButton:
+                startActivity(new Intent(this, MainActivity.class));
+                return true;
+
+            case R.id.menuButton:
+                return true;
+
+            case R.id.cartButton:
+                startActivity(new Intent(this, checkoutActivity.class));
+                return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     public ArrayList<Food> initializeData() {
