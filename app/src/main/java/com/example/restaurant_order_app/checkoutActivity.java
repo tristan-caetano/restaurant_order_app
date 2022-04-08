@@ -29,7 +29,8 @@ public class checkoutActivity extends AppCompatActivity {
 
     // Declaring global values
     public static final String SHARED_PREFS = "sharedPrefs";
-    public double total;
+    public static final String FINAL_TOTAL = "final_total";
+    public float total;
 
     // Global values for date comparison
     private Date date;
@@ -147,6 +148,10 @@ public class checkoutActivity extends AppCompatActivity {
 
             case R.id.cartButton:
                 return true;
+
+            case R.id.order_list:
+                startActivity(new Intent(this, order_list.class));
+                return true;
         }
 
         return super.onOptionsItemSelected(item);
@@ -184,10 +189,15 @@ public class checkoutActivity extends AppCompatActivity {
     // Calculating tip for final view
     public String doTip(CheckBox tip15, CheckBox tip20, EditText customTip){
 
+        // Shared Prefs for final total
+        SharedPreferences sharedPrefs = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
+        SharedPreferences.Editor ed = sharedPrefs.edit();
+
         // Declaring variables
         String finalSummary = "";
-        double cTip = 0;
+        float cTip = 0;
         String cTipS = "0";
+        float finalTotal = 0;
         final DecimalFormat df = new DecimalFormat("#.##");
 
         // If a custom tip is entered
@@ -220,8 +230,12 @@ public class checkoutActivity extends AppCompatActivity {
         }
 
         // Calculating Final Total
-        cTipS = df.format(cTip + total);
+        finalTotal = cTip + total;
+        cTipS = df.format(finalTotal);
         finalSummary += ("Final Total:                             $" + (cTipS));
+
+        // Saving final total
+        ed.putFloat(FINAL_TOTAL, finalTotal);
 
         return finalSummary;
     }

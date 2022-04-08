@@ -21,6 +21,12 @@
         android:title="Cart"
         app:showAsAction="always" />
 
+    <item
+        android:id="@+id/order_list"
+        android:icon="@drawable/order_list"
+        android:title="Cart"
+        app:showAsAction="always" />
+
 
 
 

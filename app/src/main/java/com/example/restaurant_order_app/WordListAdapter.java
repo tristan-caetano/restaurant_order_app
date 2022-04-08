@@ -19,7 +19,7 @@ public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.WordVi
     class WordViewHolder extends RecyclerView.ViewHolder
             implements View.OnClickListener {
 
-        // Declating textview and adapter
+        // Declaring textview and adapter
         public final TextView wordItemView;
         final WordListAdapter mAdapter;
 

@@ -56,6 +56,10 @@ public class menuActivity extends AppCompatActivity {
             case R.id.cartButton:
                 startActivity(new Intent(this, checkoutActivity.class));
                 return true;
+
+            case R.id.order_list:
+                startActivity(new Intent(this, order_list.class));
+                return true;
         }
 
         return super.onOptionsItemSelected(item);
@@ -74,8 +78,8 @@ public class menuActivity extends AppCompatActivity {
         // Clear the existing data (to avoid duplication).
         foodData.clear();
 
-        // Create the ArrayList of Sports objects with titles and
-        // information about each sport.
+        // Create the ArrayList of Food objects with titles and
+        // information about each menu item.
         for(int i=0;i<foodList.length;i++){
             foodData.add(new Food(foodList[i],foodImageResources.getResourceId(i,0), this));
             System.out.println("THIS: " + this);
