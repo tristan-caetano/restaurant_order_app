@@ -61,6 +61,8 @@ public class payActivity extends AppCompatActivity {
                     }else{
                         Toast.makeText(payActivity.this, "Please fill in all fields.", Toast.LENGTH_SHORT).show();
                     }
+                Intent menuIntent = new Intent(getApplicationContext(), order_list.class);
+                startActivity(menuIntent);
 
 
             }
