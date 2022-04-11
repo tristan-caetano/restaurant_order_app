@@ -31,6 +31,7 @@ public class checkoutActivity extends AppCompatActivity {
     public static final String SHARED_PREFS = "sharedPrefs";
     public static final String FINAL_TOTAL = "final_total";
     public float total;
+    public float finalTotal;
 
     // Global values for date comparison
     private Date date;
@@ -44,6 +45,10 @@ public class checkoutActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_checkout);
+
+        // Shared Prefs for final total
+        SharedPreferences sharedPrefs = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
+        SharedPreferences.Editor ed = sharedPrefs.edit();
 
         // Declaring check boxes
         CheckBox tip15Check = (CheckBox) findViewById(R.id.tip15Check);
@@ -77,6 +82,12 @@ public class checkoutActivity extends AppCompatActivity {
         checkoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                // Saving final total
+                ed.putFloat(FINAL_TOTAL, finalTotal);
+                ed.commit();
+
+                // Checking if the restaurant is open
                 isOpen();
             }
         });
@@ -189,15 +200,10 @@ public class checkoutActivity extends AppCompatActivity {
     // Calculating tip for final view
     public String doTip(CheckBox tip15, CheckBox tip20, EditText customTip){
 
-        // Shared Prefs for final total
-        SharedPreferences sharedPrefs = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
-        SharedPreferences.Editor ed = sharedPrefs.edit();
-
         // Declaring variables
         String finalSummary = "";
         float cTip = 0;
         String cTipS = "0";
-        float finalTotal = 0;
         final DecimalFormat df = new DecimalFormat("#.##");
 
         // If a custom tip is entered
@@ -233,9 +239,6 @@ public class checkoutActivity extends AppCompatActivity {
         finalTotal = cTip + total;
         cTipS = df.format(finalTotal);
         finalSummary += ("Final Total:                             $" + (cTipS));
-
-        // Saving final total
-        ed.putFloat(FINAL_TOTAL, finalTotal);
 
         return finalSummary;
     }

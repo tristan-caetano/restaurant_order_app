@@ -20,7 +20,7 @@ public class OrderListAdapter extends RecyclerView.Adapter<OrderListAdapter.MyVi
     // Global Variables
     private Context context;
     private Activity activity;
-    private ArrayList id, name, email, phone, date, card;
+    private ArrayList id, name, email, phone, date, card, total;
 
     // Setting constructor
     OrderListAdapter(Context context,
@@ -30,7 +30,8 @@ public class OrderListAdapter extends RecyclerView.Adapter<OrderListAdapter.MyVi
                      ArrayList email,
                      ArrayList phone,
                      ArrayList date,
-                     ArrayList card){
+                     ArrayList card,
+                     ArrayList total){
         this.activity = activity;
         this.context = context;
         this.id = id;
@@ -39,6 +40,7 @@ public class OrderListAdapter extends RecyclerView.Adapter<OrderListAdapter.MyVi
         this.phone = phone;
         this.date = date;
         this.card = card;
+        this.total = total;
     }
 
     // Setting up inflator
@@ -59,6 +61,7 @@ public class OrderListAdapter extends RecyclerView.Adapter<OrderListAdapter.MyVi
         holder.phoneText.setText(String.valueOf(phone.get(position)));
         holder.dateText.setText(String.valueOf(date.get(position)));
         holder.cardText.setText(String.valueOf(card.get(position)));
+        holder.totalText.setText(String.valueOf(total.get(position)));
 
         // Button for deleting row in db
         holder.delButton.setOnClickListener(new View.OnClickListener() {
@@ -82,7 +85,7 @@ public class OrderListAdapter extends RecyclerView.Adapter<OrderListAdapter.MyVi
     // ViewHolder class
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
-        TextView idText, nameText, emailText, phoneText, dateText, cardText;
+        TextView idText, nameText, emailText, phoneText, dateText, cardText, totalText;
         Button delButton;
 
         public MyViewHolder(@NonNull View itemView) {
@@ -94,6 +97,7 @@ public class OrderListAdapter extends RecyclerView.Adapter<OrderListAdapter.MyVi
             phoneText = itemView.findViewById(R.id.phone);
             dateText = itemView.findViewById(R.id.date);
             cardText = itemView.findViewById(R.id.card);
+            totalText = itemView.findViewById(R.id.total);
             delButton = itemView.findViewById(R.id.deleteButton);
         }
     }

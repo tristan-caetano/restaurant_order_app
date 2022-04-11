@@ -25,6 +25,7 @@ public class DatabaseInterfacer extends SQLiteOpenHelper {
     private static final String COLUMN_PHONE = "phone_number";
     private static final String COLUMN_DATE = "date";
     private static final String COLUMN_CARD = "card_info";
+    private static final String COLUMN_TOTAL = "total";
 
 
     // Constructor
@@ -42,7 +43,8 @@ public class DatabaseInterfacer extends SQLiteOpenHelper {
                     COLUMN_EMAIL + " TEXT, " +
                     COLUMN_PHONE + " TEXT, " +
                     COLUMN_DATE + " TEXT, " +
-                    COLUMN_CARD + " TEXT);";
+                    COLUMN_CARD + " TEXT," +
+                    COLUMN_TOTAL + " TEXT );";
         db.execSQL(query);
     }
 
@@ -54,7 +56,7 @@ public class DatabaseInterfacer extends SQLiteOpenHelper {
     }
 
     // Sending values to database to be saved
-    void addOrder(String name, String email, String phone, String date, String card){
+    void addOrder(String name, String email, String phone, String date, String card, String total){
 
         // Allows us to write to db
         SQLiteDatabase db = this.getWritableDatabase();
@@ -68,6 +70,7 @@ public class DatabaseInterfacer extends SQLiteOpenHelper {
         cv.put(COLUMN_PHONE, phone);
         cv.put(COLUMN_DATE, date);
         cv.put(COLUMN_CARD, card);
+        cv.put(COLUMN_TOTAL, ("$" + total));
 
         // Storing row into db
         long result = db.insert(TABLE_NAME, null, cv);

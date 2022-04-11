@@ -20,7 +20,7 @@ public class order_list extends AppCompatActivity {
 
     // Global variables
     DatabaseInterfacer myDB = new DatabaseInterfacer(order_list.this);
-    ArrayList<String> id, name, email, phone, date, card;
+    ArrayList<String> id, name, email, phone, date, card, total;
     OrderListAdapter oLAdapter;
 
     @Override
@@ -42,12 +42,13 @@ public class order_list extends AppCompatActivity {
         phone = new ArrayList<>();
         date = new ArrayList<>();
         card =  new ArrayList<>();
+        total = new ArrayList<>();
 
         // Saving data from db to arrays
         displayData();
 
         // Creating adapter for recycler view with arrays
-        oLAdapter = new OrderListAdapter(order_list.this, order_list.this, id, name, email, phone, date, card);
+        oLAdapter = new OrderListAdapter(order_list.this, order_list.this, id, name, email, phone, date, card, total);
         recyclerView.setAdapter(oLAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager((order_list.this)));
     }
@@ -102,6 +103,7 @@ public class order_list extends AppCompatActivity {
                 phone.add(cursor.getString(3));
                 date.add(cursor.getString(4));
                 card.add(cursor.getString(5));
+                total.add(cursor.getString(6));
 
             }
         }
